@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Subaslata Cinema</title>
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+  <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+  <nav class="navbar navbar-expand-sm bg-light justify-content-center fixed-top py-3">
+    <ul class="navbar-nav">
+      <li class="nav-item px-2">
+        <a class="nav-link" href="#home">Home</a>
+      </li>
+      <li class="nav-item px-2">
+        <a class="nav-link" href="#movies">Movies</a>
+      </li>
+      <li class="nav-item px-2">
+        <a class="nav-link" href="#images">Images</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="home" class="container bg-light paddingForBox">
+    <h1>Cinema</h1>
+    <div id="demo" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ul class="carousel-indicators">
+        <li data-target="#demo" data-slide-to="0" class="active"></li>
+        <li data-target="#demo" data-slide-to="1"></li>
+        <li data-target="#demo" data-slide-to="2"></li>
+      </ul>
+      <!-- The slideshow -->
+      <div class="carousel-inner">
+        {% for time in times %}
+        <div class="carousel-item active">
+          <img src="{{ time.imageUrl }}" alt="Los Angeles" width="1100" height="500">
+        </div>
+        {% endfor %}
+      </div>
+      <!-- Left and right controls -->
+      <a class="carousel-control-prev" href="#demo" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </a>
+      <a class="carousel-control-next" href="#demo" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </a>
+    </div>
+  </div>
+
+  <div id="movies" class="container bg-info paddingForBox">
+    <h1>Agregar Pelicula</h1>
+    <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look
+      at the navigation bar while scrolling!</p>
+    <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look
+      at the navigation bar while scrolling!</p>
+  </div>
+
+  <div id="images" class="container bg-warning paddingForBox">
+    <h1>Agregar Imagen a Pelicula</h1>
+    <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look
+      at the navigation bar while scrolling!</p>
+    <p>Try to scroll this section and look at the navigation bar while scrolling! Try to scroll this section and look
+      at the navigation bar while scrolling!</p>
+  </div>
+
+</body>
+<script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</html>
