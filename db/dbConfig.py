@@ -12,7 +12,7 @@ class ConnectDb():
 
     def StartConnection(self):
         if os.environ.get('GAE_ENV') == 'standard':
-            unix_socket = '/cloudsql/{}'.format(db_connection_name)
+            unix_socket = '/cloudsql/{}'.format(self.__db_connection_name)
             self.cnx = pymysql.connect(user=self.__db_user, password=self.__db_password,
                                 unix_socket=unix_socket, db=self.__db_name)
         else:
@@ -22,10 +22,14 @@ class ConnectDb():
 
         self.cursor = self.cnx.cursor()
 
-    def Execute(self, sql_statement):
+    def Execute(self, sql_statement, insert):
         with self.cursor as cursor:
             cursor.execute(sql_statement)
-            result = cursor.fetchall()
+            if not insert:
+                result = cursor.fetchall()
+        if insert:
+            self.cnx.commit()
+            result = "Executed"
         return result
     
     def CloseConnection(self):
